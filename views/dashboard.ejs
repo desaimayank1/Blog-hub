@@ -58,16 +58,17 @@
               <% for(let i=0; i<posts.length; i++) { %>
               <div
                 class="card mt-4"
-                style="cursor: pointer"
+                style="cursor: pointer;color: inherit ;"
                 onclick='window.location.replace("/post/view/<%= posts[i]._id %>")'
               >
-                <div class="card-header pt-4 pb-2">
+                <div class="card-header pt-2 pb-2  bg-red-500">
                   <div class="card overflow-hidden border-0">
                     <img
+                    style="height: 280px; object-fit: cover; padding-top:0px ;"
                       alt="Image placeholder"
                       loading="lazy"
                       src="<%= posts[i].thumbnail %>"
-                      class="card-img-top"
+                      class="card-img-top h-12 object-cover"
                     />
                     <span class="mask bg-info opacity-3"></span>
                     <span
