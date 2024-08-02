@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); // express 
 const connectDb = require("./config/db");
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -6,7 +6,7 @@ const MongoStore = require("connect-mongo")(session);
 
 const passport = require("passport");
 
-const app = express();
+const app = express(); //making server from express
 const PORT = 3000;
 
 connectDb();
@@ -15,9 +15,9 @@ require("./models/User");
 require("./models/Post");
 require("./models/Comment");
 
-app.set("view engine", "ejs");
-app.use(express.static("public"));
-app.use(express.json());
+app.set("view engine", "ejs");  // to use ejs throughout the server
+app.use(express.static("public")); //This means that any files in the "public" directory of your project can be accessed directly via the URL.
+app.use(express.json()); // this tells express app that you need to receive json data as your body (express.json() this is middleware)
 
 app.use(
   session({
