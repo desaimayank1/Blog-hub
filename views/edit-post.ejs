@@ -392,8 +392,8 @@
       try {
         const videoThumbnail = document.querySelector("#video-thumbnail");
   
-        let thumbnailUploadResponse={ok:true};
-        let thumbnailKeyName="code-2.jpg";
+        let thumbnailUploadResponse={ok:false};
+        let thumbnailKeyName="";
   
         if (videoThumbnail.files.length > 0) {
           const { uploadResponse, fileName } = await uploadFile(
@@ -402,6 +402,7 @@
           thumbnailUploadResponse = uploadResponse;
           thumbnailKeyName = fileName;
           console.log("THUMBNAIL", uploadResponse, fileName);
+          thumbnailUploadResponse={ok:true};
         }
   
         let videoUploadResponse={ok:true};

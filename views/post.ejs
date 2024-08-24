@@ -63,7 +63,7 @@
                   <button 
                   type="button" 
                   class="btn btn-danger"
-                  onclick="deletepost(`<%=post._id %>`)"
+                  onclick="deletepost(`<%=post._id %>`,`<%=post.thumbnail %>`)"
                   >Delete</button>
                 </div>
               </div>
@@ -434,8 +434,19 @@
     </script>
 
     <script>
-      const deletepost= async (postId)=>{
+      const deletepost= async (postId,postThumbnail)=>{
+        const url = postThumbnail
+        const fileName = url.match(/\/([^\/]+)$/)[1];
         try {
+           const imgres=await fetch(
+              "/upload/deleteObject",
+              {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fileName: fileName })
+              }
+           );
+
            const res=await fetch(
             `/post/delete?postId=${postId}`,
             {

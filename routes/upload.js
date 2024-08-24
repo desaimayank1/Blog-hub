@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand,DeleteObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { ensureAuth } = require("../middleware/auth");
 
@@ -34,6 +34,23 @@ const getPresignedUrl = async (fileName, fileType) => {
   };
 };
 
+const deleteObjectFromS3 = async (fileName) => {
+  const command = new DeleteObjectCommand({
+    Bucket: "learnflow-blogsite-app",
+    Key: fileName,
+  });
+
+  try {
+    const data = await bucket.send(command);
+    console.log("Successfully deleted object:", data);
+    return data;
+  } catch (error) {
+    console.log("Error deleting object:", error);
+    throw error;
+  }
+};
+
+
 const router = new Router();
 
 router.get("/presignedUrl", ensureAuth, async (req, res) => {
@@ -48,6 +65,29 @@ router.get("/presignedUrl", ensureAuth, async (req, res) => {
     const urlResponse = await getPresignedUrl(fileName, fileType);
 
     res.status(200).send(urlResponse);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      error: "Something went wrong",
+    });
+  }
+});
+
+router.delete("/deleteObject", ensureAuth, async (req, res) => {
+  try {
+    const { fileName } = req.body;
+    console.log(fileName);
+    if (!fileName) {
+      return res.status(400).send({
+        error: "File name is required",
+      });
+    }
+
+    await deleteObjectFromS3(fileName);
+
+    res.status(200).send({
+      message: "File deleted successfully",
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({
