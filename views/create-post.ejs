@@ -334,65 +334,6 @@
   var editor1 = new RichTextEditor("#div_editor1");
 </script>
 
-<!-- <script>
-  const uploadFile = async (file) => {
-    try {
-      const fileName = file.name;
-      const contentType = file.type;
-
-      console.log(file, fileName, contentType);
-      const urlRes = await fetch(
-        `/get/preSignedURL?fileName=${fileName}&contentType=${contentType}`,
-        {
-          method: "GET",
-        }
-      );
-
-      console.log("URL RES", urlRes);
-
-      const data = await urlRes.json();
-
-      console.log("DATA");
-      const url = data.url;
-      const key = data.key;
-
-      console.log(data);
-
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": contentType,
-        },
-        body: file,
-      });
-
-      console.log(response);
-
-      return {
-        response,
-        url,
-        key,
-      };
-    } catch (error) {
-      console.log(error);
-      $("#loadingModal").modal("hide");
-      $("errorModal").modal("show");
-    }
-  };
-  const createPost = async (postObject) => {
-    try {
-      const response = await fetch("/post/create/new", {
-        method: "POST",
-        body: JSON.stringify(postObject),
-        headers: { "Content-Type": "application/json" },
-      });
-      return response;
-    } catch (error) {
-      $("#loadingModal").modal("hide");
-      $("errorModal").modal("show");
-    }
-  };
-</script> -->
 
 <script>
   const uploadFile = async (file) => {
@@ -503,35 +444,3 @@
     }
   });
 </script>
-<!-- 
-<script>
-  const postForm = document.querySelector("#post-form");
-  postForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const title = postForm.title.value;
-    const subTitle = postForm.subTitle.value;
-    const description = editor1.getHTMLCode();
-    console.log(title, description);
-
-    // Upload the Thumbnail image first
-
-    const response = await fetch("/create/post", {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        subTitle,
-        description,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await response.json();
-    if (data._id) {
-      window.location.href = "/dashboard";
-    } else {
-      alert("Oops, something went wrong !");
-    }
-  });
-</script> -->
