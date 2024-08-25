@@ -1,10 +1,10 @@
 const mongoose=require("mongoose");
-const {MONGO_CONNECTION_URL}=require("./keys.js")
+require('dotenv').config()
 
 const connectDb=async()=>{
   try {
     const conn= await mongoose.connect(
-        MONGO_CONNECTION_URL,
+        process.env.MONGO_CONNECTION_URL,
         {
             useNewUrlParser:true,
             useUnifiedTopology:true,

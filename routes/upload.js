@@ -2,15 +2,14 @@ const { Router } = require("express");
 const { S3Client, PutObjectCommand,DeleteObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { ensureAuth } = require("../middleware/auth");
-
-const { AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = require("../config/keys");
+require('dotenv').config()
 
 const { v4: uuid } = require("uuid");
 const bucket = new S3Client({
   region: "ap-south-1",
   credentials: {
-    accessKeyId: AWS_ACCESS_KEY,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 
