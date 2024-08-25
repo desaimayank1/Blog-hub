@@ -18,7 +18,7 @@ require("./models/Comment");
 
 app.set("view engine", "ejs");  // to use ejs throughout the server
 app.set("views", path.join(__dirname,"views")); //done
-app.use(express.static(path.join(__dirname,"public"))); //This means that any files in the "public" directory of your project can be accessed directly via the URL.
+app.use("/public",express.static(path.join(__dirname,"public"))); //This means that any files in the "public" directory of your project can be accessed directly via the URL.
 app.use(express.json()); // this tells express app that you need to receive json data as your body (express.json() this is middleware)
 
 app.use(
