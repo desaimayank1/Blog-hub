@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const User = mongoose.model("users");
 const {CLIENT_SECRET}=require("./keys.js")
-const {CLIENT_ID}=require("./keys.js")
+const {CLIENT_ID,CALLBACK_URL}=require("./keys.js")
 
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
@@ -12,7 +12,7 @@ passport.use(
     {
       clientID:CLIENT_ID,
       clientSecret:CLIENT_SECRET,
-      callbackURL:"http://localhost:3000/auth/google/callback",
+      callbackURL:CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       const newUser = {
