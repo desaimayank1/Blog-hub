@@ -11,7 +11,7 @@ const Comment = mongoose.model("comments");
 
 const router = new Router();
 
-router.get("/create", ensureAuth, ensureSignUp, ensureCreator, (req, res) => {
+router.get("/create", ensureAuth, ensureSignUp, ensureCreator, (req, res) => {//create post
   const user = req.user;
 
   res.locals.user = user;
