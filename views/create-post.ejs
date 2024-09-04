@@ -396,6 +396,12 @@
         thumbnailUploadResponse = uploadResponse;
         thumbnailKeyName = fileName;
         console.log("THUMBNAIL", uploadResponse, fileName);
+      }else{
+        const { uploadResponse, fileName } = await uploadFile(
+          thumbnailKeyName
+        );
+        thumbnailUploadResponse = uploadResponse;
+        thumbnailKeyName = fileName;
       }
 
       let videoUploadResponse={ok:true};
