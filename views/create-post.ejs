@@ -390,18 +390,13 @@
       let thumbnailKeyName="code-2.jpg";
 
       if (videoThumbnail.files.length > 0) {
+        console.log(videoThumbnail.files[0])
         const { uploadResponse, fileName } = await uploadFile(
           videoThumbnail.files[0]
         );
         thumbnailUploadResponse = uploadResponse;
         thumbnailKeyName = fileName;
         console.log("THUMBNAIL", uploadResponse, fileName);
-      }else{
-        const { uploadResponse, fileName } = await uploadFile(
-          thumbnailKeyName
-        );
-        thumbnailUploadResponse = uploadResponse;
-        thumbnailKeyName = fileName;
       }
 
       let videoUploadResponse={ok:true};

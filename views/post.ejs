@@ -437,6 +437,8 @@
       const deletepost= async (postId,postThumbnail)=>{
         const url = postThumbnail
         const fileName = url.match(/\/([^\/]+)$/)[1];
+        if(fileName!="code-2.jpg")
+      {
         try {
            const imgres=await fetch(
               "/upload/deleteObject",
@@ -467,6 +469,33 @@
           console.log(error);
           alert("Oops something went wrong")
         }
+      
+      }else{
+        try {
+          
+           const res=await fetch(
+            `/post/delete?postId=${postId}`,
+            {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+            }
+            );
+
+            if (res.ok ) {
+              console.log(res);
+              window.location.href = '/dashboard';
+            } else {
+              const errorData = await res.json();
+              throw new Error(errorData.message);
+            }
+          
+        } catch (error) {
+          console.log(error);
+          alert("Oops something went wrong")
+        }
+      
+      }
+
       }
     </script>
 
