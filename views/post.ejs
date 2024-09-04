@@ -457,7 +457,7 @@
 
             if (res.ok && imgres.ok) {
               console.log(res,imgres);
-              // window.location.href = '/dashboard';/
+              window.location.href = '/dashboard';
             } else {
               const errorData = await res.json();
               throw new Error(errorData.message);
