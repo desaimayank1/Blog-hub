@@ -25,8 +25,11 @@ app.use(
   session({
     secret: "mysecretkey",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: {
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    },
   })
 );
 
