@@ -27,8 +27,23 @@ router.get(
 );
 
 router.get("/logout", (req, res) => {
-  req.logout(() => {
-    res.redirect("/");
+  req.logout((err) => {
+    if (err) {
+      console.error("Error logging out:", err);
+      return res.status(500).send("An error occurred while logging out.");
+    }
+
+    // Destroy the session
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error destroying session:", err);
+        return res.status(500).send("An error occurred while destroying the session.");
+      }
+
+      // Clear the cookie
+      res.clearCookie("connect.sid"); // `connect.sid` is the default session cookie name
+      res.redirect("/"); // Redirect to home or login page
+    });
   });
 });
 
