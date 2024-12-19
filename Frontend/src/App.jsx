@@ -1,11 +1,14 @@
 import Header from "./components/Header"
 import Login from "./components/Login";
-// import 'bootstrap/dist/css/bootstrap.css';
+import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
+import Navbar from "./components/Navbar";
 import './index.css';
 function App() {
   return (
     <>
-      <Login/>
+      <Navbar/>
+      <Dashboard/>
     </>
   )
 }
