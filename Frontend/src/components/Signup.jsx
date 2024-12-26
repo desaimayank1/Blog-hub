@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [role, setRole] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // console.log(import.meta.env.VITE_SERVER_URL);
     try {
-      const response = await fetch("/user/update/role", {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/role`, {
         method: "PATCH",
         body: JSON.stringify({ role }),
         headers: { "Content-Type": "application/json" },
+        credentials:'include',
       });
 
       if (response.status === 200) {
-        navigate("/dashboard");
+        navigate('/');
       } else {
         const data = await response.json();
         alert(data.error);
@@ -29,10 +30,10 @@ const Signup = () => {
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center">
       {/* Top Section (Background 1) */}
-      <div className="bg-black h-1/2 absolute top-0 left-0 w-full"></div>
+      <div className="bg-blue-700 h-1/2 absolute top-0 left-0 w-full"></div>
 
       {/* Bottom Section (Background 2) */}
-      <div className="bg-blue-700 h-1/2 absolute bottom-0 left-0 w-full"></div>
+      <div className="bg-black h-1/2 absolute bottom-0 left-0 w-full"></div>
 
       {/* Centered Card */}
       <div className="relative z-10 bg-gray-100 shadow-lg rounded-lg p-6 w-full max-w-md mx-auto">
@@ -40,7 +41,7 @@ const Signup = () => {
           Choose your role
         </h3>
         <form onSubmit={handleSubmit}>
-          <div className="flex justify-around items-center mb-6 text-2xl">
+          <div className="flex justify-around items-center mb-6 text-lg">
             <label className="flex items-center space-x-2">
               <input
                 type="radio"

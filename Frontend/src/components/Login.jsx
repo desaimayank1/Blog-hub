@@ -3,7 +3,7 @@ import React from "react";
 const Login = () => {
 
     const handleSignUp=()=>{
-        window.location.href = 'http://localhost:3000/auth/google';
+        window.location.href = `${import.meta.env.VITE_SERVER_URL}/auth/google`;
     }
 
   return (
