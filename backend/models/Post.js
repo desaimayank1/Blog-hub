@@ -29,6 +29,14 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     default: Date.now(),
   },
+  author:{
+    type: String,
+    default: "",
+  },
+  authorImage:{
+    type: String,
+    default: "/img/theme/light/code-2.jpg",
+  }
 });
 
 mongoose.model("posts", PostSchema);

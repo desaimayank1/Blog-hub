@@ -27,12 +27,12 @@ passport.use(
         let user = await User.findOne({ email: newUser.email });
         if (user) {
           // User Exists
-          console.log("EXISTS ", user);
+          // console.log("EXISTS ", user);
           done(null, user);
         } else {
           // Sign Up for the first time
           user = await User.create(newUser);
-          console.log("NEW ", user);
+          // console.log("NEW ", user);
           done(null, user);
         }
       } catch (error) {

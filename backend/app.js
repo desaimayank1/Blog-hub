@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const path=require("path");
-
+const cors=require("cors");
+const baseUrl=process.env.BASE_URL;
 const passport = require("passport");
 
 const app = express(); //making server from express
@@ -21,6 +22,13 @@ app.set("views", path.join(__dirname,"views")); //done
 app.use(express.static(path.join(__dirname,"public"))); //This means that any files in the "public" directory of your project can be accessed directly via the URL.
 app.use(express.json()); // this tells express app that you need to receive json data as your body (express.json() this is middleware)
 
+const corsOptions = {
+  origin: `${baseUrl}`, // Replace with your frontend URL
+  methods: "GET,POST,PATCH,UPDATE", 
+  credentials: true, // Allow cookies to be sent with the requests
+};
+app.use(cors(corsOptions));
+
 app.use(
   session({
     secret: "mysecretkey",
@@ -28,6 +36,7 @@ app.use(
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     cookie: {
+      httpOnly:true,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     },
   })

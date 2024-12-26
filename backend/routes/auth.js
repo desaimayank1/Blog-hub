@@ -1,8 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
-
 const router = new Router();
-
+const baseUrl=process.env.BASE_URL;
 router.get(
   "/google",
   passport.authenticate("google", {
@@ -14,16 +13,16 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/",
+    failureRedirect: `${baseUrl}/login`,
   }),
   (req, res) => {
     const user = req.user;
     console.log(user, user.role);
 
     if (!(user.role === 0 || user.role === 1)) {
-      return res.redirect("/signup");
+      return res.redirect(`${baseUrl}/signup`);
     }
-    res.redirect("/dashboard");
+    res.redirect(`${baseUrl}`);
   }
 );
 
@@ -43,7 +42,7 @@ router.get("/logout", (req, res) => {
 
       // Clear the cookie
       res.clearCookie("connect.sid"); // `connect.sid` is the default session cookie name
-      res.redirect("/"); // Redirect to home or login page
+      res.redirect(`${baseUrl}/login`); // Redirect to home or login page
     });
   });
 });

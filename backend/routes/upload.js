@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { S3Client, PutObjectCommand,DeleteObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const { ensureAuth } = require("../middleware/auth");
+const {ensureCreator} =require("../middleware/user");
 require('dotenv').config()
 
 const { v4: uuid } = require("uuid");
@@ -52,7 +53,7 @@ const deleteObjectFromS3 = async (fileName) => {
 
 const router = new Router();
 
-router.get("/presignedUrl", ensureAuth, async (req, res) => {
+router.get("/presignedUrl", ensureAuth,ensureCreator, async (req, res) => {
   try {
     const { fileName, fileType } = req.query;
     if (!fileName || !fileType) {

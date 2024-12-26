@@ -18,6 +18,18 @@ router.get("/create", ensureAuth, ensureSignUp, ensureCreator, (req, res) => {//
   res.render("create-post");
 });
 
+router.get("/getposts",ensureAuth,ensureSignUp, async (req,res)=>{
+  try {
+    const posts = await Post.find({});
+    // console.log(posts);
+    res.status(200).json({ message: "Got posts", posts });
+  } catch (error) {
+    res.status(500).send({
+      error: "Something went wrong while getting posts",
+    });
+  }
+})
+
 router.post(
   "/create",
   ensureAuth,

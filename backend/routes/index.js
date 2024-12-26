@@ -19,7 +19,7 @@ router.get("/signup", ensureAuth, ensureNewUser, (req, res) => {
 });
 
 router.patch(
-  "/user/update/role",
+  "/role",
   ensureAuth,
   ensureNewUser,
   async (req, res) => {
@@ -38,16 +38,13 @@ router.patch(
   }
 );
 
-router.get("/dashboard", ensureAuth, ensureSignUp, async (req, res) => {
+router.get("/getuser", ensureAuth, ensureSignUp, async (req, res) => {
   try {
-    const posts = await Post.find({});
-
-    res.locals.user = req.user;
-    res.locals.posts = posts;
-    res.render("dashboard");
+    console.log(req.user);
+    res.status(200).send(req.user);
   } catch (error) {
     console.log(error);
-    res.redirec("/internal-server-error");
+    res.redirect("/internal-server-error");
   }
 });
 
@@ -62,7 +59,7 @@ router.get("/profile",ensureAuth, ensureSignUp, async (req, res) =>{
         res.render("profile-settings");
      } catch (error) {
        console.log(error);
-       res.redirec("/internal-server-error")
+       res.redirect("/internal-server-error")
      }
 });
 
