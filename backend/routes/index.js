@@ -10,13 +10,6 @@ const { ensureSignUp, ensureNewUser } = require("../middleware/user");
 
 const router = new Router();
 
-router.get("/", ensureGuest, (req, res) => {
-  res.render("login");
-});
-
-router.get("/signup", ensureAuth, ensureNewUser, (req, res) => {
-  res.render("signup");
-});
 
 router.patch(
   "/role",
@@ -40,7 +33,7 @@ router.patch(
 
 router.get("/getuser", ensureAuth, ensureSignUp, async (req, res) => {
   try {
-    console.log(req.user);
+    // console.log(req.user);
     res.status(200).send(req.user);
   } catch (error) {
     console.log(error);

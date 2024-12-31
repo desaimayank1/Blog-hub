@@ -11,12 +11,6 @@ const Comment = mongoose.model("comments");
 
 const router = new Router();
 
-router.get("/create", ensureAuth, ensureSignUp, ensureCreator, (req, res) => {//create post
-  const user = req.user;
-
-  res.locals.user = user;
-  res.render("create-post");
-});
 
 router.get("/getposts",ensureAuth,ensureSignUp, async (req,res)=>{
   try {
@@ -61,6 +55,7 @@ router.post(
 router.put(
   "/create",async (req, res) => {
     try {
+      // console.log(req.body);
       const _id=req.body._id;
       const post=await Post.findById(_id);
 
@@ -69,11 +64,11 @@ router.put(
          post[key]=req.body[key];
       }
       await post.save();
-      res.status(201).send(_id);
+      res.status(201).json(_id);
 
 
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(500).send({
         error: "Something went wrong",
       });
@@ -84,25 +79,20 @@ router.put(
 router.get("/view/:postId", async (req, res) => {
   try {
     const postId = req.params.postId;
+    // console.log(postId);
     const post = await Post.findById(postId);
-    if (!post) {
-      res.redirect("/post-not-found");
-    }
-    const userId = post.userId;
 
-    const author = await User.findById(userId);
-
-    const postDate = moment(post.createdAt).format("dddd, MMMM Do YYYY");
+    const postDate = moment(post.createdAt).format("MMMM Do YYYY");
 
     const commentList = await Comment.find({ postId, depth: 1 });
 
-    res.locals.user = req.user;
-    res.locals.postDate = postDate;
-    res.locals.author = author;
-    res.locals.post = post;
-    res.locals.commentList = commentList;
-
-    res.render("post");
+    const postInfo={
+      ...post._doc,
+      postDate:postDate,
+      commentList:commentList,
+    }
+    // console.log(postInfo);
+    res.status(200).json(postInfo);
   } catch (error) {
     console.log(error);
     res.redirect("/internal-server-error");
@@ -127,20 +117,5 @@ router.delete("/delete",async (req,res)=>{
   }
 });
 
-router.get("/edit",async(req,res)=>{
-    try {
-      const _id = req.query.postId;
-      const post=await Post.findById(_id);
-      // console.log(post);
-      res.locals.post=post;
-      res.locals.user = req.user;
-      res.render("edit-post");
-      console.log(_id);
-
-    } catch (error) {
-      console.log(error);
-      res.redirect("/internal-server-error");
-    }
-});
 
 module.exports = router;

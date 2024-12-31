@@ -1,9 +1,14 @@
 import React from "react";
+import {useUser} from "../context"
 
 const Profile = () => {
-  const profileData = {
-    backgroundImage:
-      "https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80",
+  const {user} =useUser();
+  console.log(user);
+  const backgroundImage=
+      "https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80"
+  
+      const profileData = {
+
     avatar: "https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg",
     name: "Jenna Stones",
     location: "Los Angeles, California",
@@ -27,7 +32,7 @@ const Profile = () => {
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
-            backgroundImage: `url(${profileData.backgroundImage})`,
+            backgroundImage: `url(${backgroundImage})`,
           }}
         >
           <span
@@ -68,8 +73,8 @@ const Profile = () => {
                   <div className="absolute top-1/8 transform -translate-y-1/2">
                     <img
                       alt="..."
-                      src={profileData.avatar}
-                      className="shadow-xl rounded-full w-50 h-50 object-cover border-2 border-white"
+                      src={user.image}
+                      className="shadow-xl rounded-full w-60 h-55 object-cover border-2 border-white"
                     />
                   </div>
                 </div>
@@ -85,41 +90,38 @@ const Profile = () => {
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                        {profileData.stats.friends}
+                        {/* {profileData.stats.friends} */}
                       </span>
-                      <span className="text-sm text-black">Friends</span>
+                      {/* <span className="text-sm text-black">Friends</span> */}
                     </div>
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                        {profileData.stats.photos}
+                        {/* {profileData.stats.photos} */}
                       </span>
-                      <span className="text-sm text-black">Photos</span>
+                      {/* <span className="text-sm text-black">Photos</span> */}
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-black">
-                        {profileData.stats.comments}
+                        {/* {profileData.stats.comments} */}
                       </span>
-                      <span className="text-sm text-black">Comments</span>
+                      {/* <span className="text-sm text-black">Comments</span> */}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="text-center mt-12">
-                <h3 className="text-4xl font-semibold leading-normal mb-2 text-black mb-2">
-                  {profileData.name}
+                <h3 className="text-4xl font-semibold leading-normal mb-2 text-black mb-2 pt-4">
+                  {user.displayName}
                 </h3>
-                <div className="text-sm leading-normal mt-0 mb-2 text-black font-bold uppercase">
-                  <i className="fas fa-map-marker-alt mr-2 text-lg text-black"></i>
-                  {profileData.location}
+                <div className="text-2xl leading-normal mt-0 mb-2 text-black font-bold ">
+                  {user.role?"Reader":"Creater"}
                 </div>
                 <div className="mb-2 text-black mt-10">
-                  <i className="fas fa-briefcase mr-2 text-lg text-black"></i>
-                  {profileData.job}
+                  {user.email}
                 </div>
                 <div className="mb-2 text-black">
-                  <i className="fas fa-university mr-2 text-lg text-black"></i>
-                  {profileData.university}
+                  {user.phone}
                 </div>
               </div>
 
@@ -127,10 +129,10 @@ const Profile = () => {
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-9/12 px-4">
                     <p className="mb-4 text-lg leading-relaxed text-black">
-                      {profileData.bio}
+                    "The beautiful thing about learning is that no one can take it away from you."
                     </p>
                     <a href="#pablo" className="font-normal text-pink-500">
-                      Show more
+                      {/* Show more */}
                     </a>
                   </div>
                 </div>

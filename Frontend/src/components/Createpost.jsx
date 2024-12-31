@@ -98,12 +98,15 @@ const CreatePost = () => {
             await new Promise((resolve) => setTimeout(resolve, 1500));
             
             let thumbnailUploadResponse = { ok: true };
-            let thumbnailKeyName = "code-2.jpg";
+            let thumbnailKeyName = "code-1.jpg";
+            if(formData.image!=""){
             const { uploadResponse, fileName } = await handleImageUpload(
                 formData.image
             );
             thumbnailUploadResponse = uploadResponse;
             thumbnailKeyName = fileName;
+             }
+            
 
             const newPost = {
                 title: formData.title,
@@ -116,7 +119,7 @@ const CreatePost = () => {
             if (thumbnailUploadResponse.ok) {
                 newPost.thumbnail = `https://d376csz4lg8iex.cloudfront.net/${thumbnailKeyName}`;
             }
-
+            
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/post/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

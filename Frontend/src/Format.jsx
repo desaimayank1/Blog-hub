@@ -1,11 +1,10 @@
-import React ,{useEffect} from "react";
+import React ,{useEffect,useState} from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 import { useUser } from "./context";
 export default function Format() {
   const { setUser} = useUser();
-
   const getUser = async () => {
     try {
       // console.log('Request is about to be sent');
@@ -20,7 +19,8 @@ export default function Format() {
       //    console.log(data);
     } catch (error) {
       console.log("error getting user data", error)
-    }
+      
+    } 
   }
 
  
@@ -31,6 +31,7 @@ export default function Format() {
     };
     fetchData();
   }, [])
+
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Comment = () => {
+const Comment = ({Id}) => {
   const commentData = {
     totalComments: 20,
     userImage: '../cstm-assets/logo.svg',
@@ -11,11 +11,11 @@ const Comment = () => {
   };
 
   return (
-    <section className="py-24 relative">
+    <section className="py-5 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
         <div className="w-full flex-col justify-start items-start lg:gap-10 gap-6 inline-flex">
           <h2 className="text-gray-900 text-3xl font-bold font-manrope leading-normal">
-            Comments ({commentData.totalComments})
+            Comments
           </h2>
           <div className="w-full flex-col justify-start items-start lg:gap-9 gap-6 flex">
             <div className="w-full relative flex justify-between gap-2">

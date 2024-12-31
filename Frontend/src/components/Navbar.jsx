@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import { useUser } from "../context";
+
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const { user } = useUser();
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
   const handleLogout = () => {
-    // Logic for logging out
-    // console.log(ServerUrl)
-     window.location.href = `${import.meta.env.VITE_SERVER_URL}/auth/logout`;
+    window.location.href = `${import.meta.env.VITE_SERVER_URL}/auth/logout`;
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-    // Add logic for search functionality if needed
-  };
+  useEffect(() => {
+    // console.log("User Data Updated:", user);
+  }, [user]);
 
   return (
-    
     <header className="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-400 bg-gray-100 py-2 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
       <div className="px-4">
         <div className="flex items-center justify-between">
@@ -33,9 +32,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="hidden md:flex md:items-center md:justify-center md:gap-10">
-
             <a
-              aria-current="page"
               className="inline-block rounded-lg px-2 py-1 text-lg font-medium text-gray-900 transition-all duration-200 hover:bg-violet-200 hover:text-gray-900"
               href="/"
             >
@@ -47,16 +44,6 @@ const Navbar = () => {
             >
               Profile
             </a>
-            {/* Search Bar */}
-            {/* <div className="relative mx-4">
-              <input
-                type="text"
-                className="w-full md:w-64 px-4 py-2 rounded-lg border border-gray-300 bg-violet-200 placeholder-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-            </div> */}
             <a
               className="hidden items-center justify-center rounded-xl bg-violet-200 px-3 py-2 text-m font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
               href="/create"
@@ -68,18 +55,25 @@ const Navbar = () => {
                 className="inline-flex items-center justify-center rounded-full bg-gray-200 p-1"
                 onClick={toggleDropdown}
               >
-                <img
-                  className="h-10 w-10 rounded-full m-0"
-                  src="../cstm-assets/blog.jpg" // replace with dynamic image URL if needed
-                  alt="Profile"
-                />
+                {user.image ? (
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src={user.image}
+                    alt="Profile"
+                  />
+                ) : (
+                  <div className="h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center text-white">
+                    {/* Placeholder initials or spinner */}
+                    {user.name?.charAt(0).toUpperCase() || "U"}
+                  </div>
+                )}
               </button>
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 px-4 bg-white shadow-lg rounded-lg border border-gray-200 hover:bg-violet-200">
                   <ul>
                     <li>
                       <button
-                        className="block w-full px-2 py-2 font-medium text-lg text-gray-700 "
+                        className="block w-full px-2 py-2 font-medium text-lg text-gray-700"
                         onClick={handleLogout}
                       >
                         Logout
@@ -92,7 +86,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      
     </header>
   );
 };

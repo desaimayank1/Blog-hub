@@ -24,7 +24,7 @@ app.use(express.json()); // this tells express app that you need to receive json
 
 const corsOptions = {
   origin: `${baseUrl}`, // Replace with your frontend URL
-  methods: "GET,POST,PATCH,UPDATE", 
+  methods: "GET,POST,PATCH,UPDATE,DELETE,PUT", 
   credentials: true, // Allow cookies to be sent with the requests
 };
 app.use(cors(corsOptions));

@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import Error404 from "./components/partials/Error404";
 import Error500 from "./components/partials/Error500";
 import Format from "./Format";
+import Editpost from "./components/Editpost";
 import { createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from 'react-router-dom'
 import env from "react-dotenv";
 import { useState } from "react";
@@ -23,6 +24,7 @@ const router=createBrowserRouter(
            <Route path='create' element={<CreatePost/>}/>
            <Route path='profile' element={<Profile/>}/>
            <Route path='post' element={<Post/>}/>
+           <Route path='edit' element={<Editpost/>}/>
            <Route path='error404' element={<Error404/>}/>
            <Route path='error500' element={<Error500/>}/>   
      </Route>
