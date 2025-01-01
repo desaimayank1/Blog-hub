@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-const Comment = ({ Id, parentId, depth }) => {
+const Comment = ({ Id, parentId, depth,toggle }) => {
   const [commentList, setCommentList] = useState({});
   const [loading, setLoading] = useState(true);
   const [replyInputVisible, setReplyInputVisible] = useState(null);
@@ -23,7 +23,7 @@ const Comment = ({ Id, parentId, depth }) => {
         depth: depth+1,
         parentId:_id,
       }
-      console.log(commentInfo);
+      // console.log(commentInfo);
       try {
         const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/comment/create`, {
           method: "POST",
@@ -57,7 +57,7 @@ const Comment = ({ Id, parentId, depth }) => {
       });
       const data = await response.json();
       setCommentList(data.replyList);
-      console.log(data.replyList);
+      // console.log(data.replyList);
       setLoading(false);
     } catch (error) {
       console.log("something went wrong while fetching comments", error);
@@ -67,7 +67,7 @@ const Comment = ({ Id, parentId, depth }) => {
 
   useEffect(() => {
     fetchcomment();
-  }, [])
+  }, [toggle])
 
   return (
     <> {
@@ -132,7 +132,7 @@ const Comment = ({ Id, parentId, depth }) => {
                         />
                       </svg>
                     </a>
-                    <h5 className="text-gray-900 text-sm font-normal leading-snug"> Replies</h5>
+                    <h5 className="text-gray-900 text-sm font-normal leading-snug">Replies</h5>
                   </div>
                 </div>
               </div>
@@ -150,7 +150,7 @@ const Comment = ({ Id, parentId, depth }) => {
 
                   <button
                     onClick={() => {
-                      handleReplySubmit(commentData._id,commentData.depth,commentData.postId)
+                      handleReplySubmit(commentData._id,commentData.depth,commentData.postId,toggle)
                     }}
                     className="h-12 px-4 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 focus:outline-none flex items-center justify-center"
                   >

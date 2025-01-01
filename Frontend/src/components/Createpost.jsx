@@ -76,8 +76,7 @@ const CreatePost = () => {
 
         } catch (error) {
             console.log("something went wrong while uploading image", error);
-            // $("#loadingModal").modal("hide");
-            // $("#errorModal").modal("show");
+            
         }
 
     }
@@ -89,10 +88,6 @@ const CreatePost = () => {
         e.preventDefault();
         // console.log(formData.image);
         // console.log(content);
-
-        // $("#loadingModal").modal("show");
-        // $("#successModal").modal("hide");
-        // $("#errorModal").modal("hide");
         setLoadingModalConfig({ isOpen: true });
         try {
             await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -132,20 +127,17 @@ const CreatePost = () => {
             if (data.id) {
                 setLoadingModalConfig({ isOpen: false });
                 setSuccessModalConfig({ isOpen: true });
-                // $("#loadingModal").modal("hide");
-                // $("#successModal").modal("show");
+                
             } else {
                 setLoadingModalConfig({ isOpen: false });
                 setErrorModalConfig({ isOpen: true });
-                // $("#loadingModal").modal("hide");
-                // $("#errorModal").modal("show");
+                
             }
         } catch (error) {
             console.log("something went wrong while uploading blog", error);
             setLoadingModalConfig({ isOpen: false });
             setErrorModalConfig({ isOpen: true });
-            // $("#loadingModal").modal("hide");
-            // $("#errorModal").modal("show");
+           
         }
 
     };

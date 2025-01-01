@@ -5,20 +5,25 @@ import { Outlet } from "react-router-dom";
 import { useUser } from "./context";
 export default function Format() {
   const { setUser} = useUser();
+  const [loading,setLoading]=useState(true);
   const getUser = async () => {
     try {
-      // console.log('Request is about to be sent');
-      // console.log(import.meta.env.VITE_SERVER_URL);
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/getuser`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: 'include',
       })
       const data = await response.json();
+      if(data==false){
+         window.location.href="/login"
+      }
+      setLoading(false);
+      // console.log(data);
       setUser(data);
       //    console.log(data);
     } catch (error) {
       console.log("error getting user data", error)
+      setLoading(false);
       
     } 
   }
@@ -31,9 +36,11 @@ export default function Format() {
     };
     fetchData();
   }, [])
+  
 
 
   return (
+    
     <>
       <Navbar />
       <Outlet />

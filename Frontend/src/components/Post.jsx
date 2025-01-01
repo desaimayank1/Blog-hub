@@ -110,8 +110,6 @@ const Post = () => {
     }
   }
 
-  // console.log(user);
-  // console.log(postData);
   return (
     <>
       {
@@ -227,7 +225,7 @@ const Post = () => {
                       <div className="w-full flex-col justify-start items-start gap-5 flex">
                         <div className="w-full pl-7 flex-col justify-start items-start gap-2 flex">
 
-                          <Comment Id={Id} parentId={-1} depth={1}/>
+                          <Comment Id={Id} parentId={-1} depth={1} toggle={toggle}/>
                         </div>
                       </div>
                     </div>

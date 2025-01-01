@@ -6,7 +6,6 @@ const { ensureAuth } = require("../middleware/auth");
 const { ensureSignUp, ensureCreator } = require("../middleware/user");
 
 const Post = mongoose.model("posts");
-const User = mongoose.model("users");
 const Comment = mongoose.model("comments");
 
 const router = new Router();
