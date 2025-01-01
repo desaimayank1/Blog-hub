@@ -105,11 +105,11 @@ const Dashboard = () => {
                                      />
                                      </a>
                                  </div>
-                                 <div className="flex flex-1 flex-col justify-between bg-gray-200 p-6">
+                                 <div className="flex flex-1 flex-col justify-between bg-blue-100 p-6">
                                      <div className="flex-1">
                                          
                                          <a href={`/post?f=${card._id}`} className="mt-2 block">
-                                             <p className="text-2xl font-semibold text-gray-900">{card.title}</p>
+                                             <p className="text-2xl font-semibold text-gray-900">"{card.title}"</p>
                                              <p className="mt-3 text-base text-gray-500">{card.subTitle}</p>
                                          </a>
                                      </div>

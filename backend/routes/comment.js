@@ -28,15 +28,18 @@ router.post("/create", ensureAuth, async (req, res) => {
 
 router.get("/fetch/reply", ensureAuth, async (req, res) => {
   try {
-    const { parentId, parentDepth } = req.query;
-    if (!parentId || !parentDepth)
-      return res.status(400).send({
-        error: "Parent ID or Parent Depth is missing",
-      });
+    const { parentId, depth,postId } = req.query;
+    // console.log(parentId,depth,postId);
+    // if (!parentId || !depth || postId)
+    //   return res.status(400).send({
+    //     error: "Parent ID or Depth or Post ID is missing",
+    //   });
     const replyList = await Comment.find({
       parentId: parentId,
-      depth: Number(parentDepth) + 1,
+      depth: Number(depth),
+      postId:postId
     });
+    // console.log(replyList);
     res.status(200).send({
       replyList,
     });

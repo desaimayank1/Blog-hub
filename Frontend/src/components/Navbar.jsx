@@ -18,7 +18,7 @@ const Navbar = () => {
   }, [user]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-400 bg-gray-100 py-2 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
+    <header className="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border bg-gray-100 border-gray-400 bg-gray-100 py-2 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
       <div className="px-4">
         <div className="flex items-center justify-between">
           <div className="flex shrink-0">
@@ -45,10 +45,10 @@ const Navbar = () => {
               Profile
             </a>
             <a
-              className="hidden items-center justify-center rounded-xl bg-violet-200 px-3 py-2 text-m font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
+              className="inline-block rounded-lg px-2 py-1 text-lg font-medium text-gray-900 transition-all duration-200 hover:bg-violet-200 hover:text-gray-900"
               href="/create"
             >
-              Create Post
+              Create-Post
             </a>
             <div className="relative">
               <button
