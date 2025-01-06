@@ -4,8 +4,6 @@ const ensureAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  // const loginUrl = `${process.env.BASE_URL}/login`;
-  // console.log("Redirecting to:", loginUrl); // Check if the URL is correct
   return res.send(false);
 };
 

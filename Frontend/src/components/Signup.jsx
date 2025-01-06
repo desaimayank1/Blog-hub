@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useUser } from "../context";
 const Signup = () => {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
-
+  const { setLoggedIn } = useUser();
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(import.meta.env.VITE_SERVER_URL);
@@ -13,13 +13,13 @@ const Signup = () => {
         method: "PATCH",
         body: JSON.stringify({ role }),
         headers: { "Content-Type": "application/json" },
-        credentials:'include',
+        credentials: 'include',
       });
 
       if (response.status === 200) {
+        setLoggedIn(true);
         navigate('/');
       } else {
-        const data = await response.json();
         alert(data.error);
       }
     } catch (error) {

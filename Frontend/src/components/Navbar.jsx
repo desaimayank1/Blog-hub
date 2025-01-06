@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from "../context";
 
 const Navbar = () => {
@@ -44,12 +44,13 @@ const Navbar = () => {
             >
               Profile
             </a>
-            <a
+            {user.role == '0' && <a
               className="inline-block rounded-lg px-2 py-1 text-lg font-medium text-gray-900 transition-all duration-200 hover:bg-violet-200 hover:text-gray-900"
               href="/create"
             >
               Create-Post
-            </a>
+            </a>}
+
             <div className="relative">
               <button
                 className="inline-flex items-center justify-center rounded-full bg-gray-200 p-1"

@@ -5,6 +5,8 @@ export const UserContext=createContext({
      setUser:()=>{},
      post:null,
      setpost:()=>{},
+     loggedin:false,
+     setLoggedIn:()=>{},
 })
 
 export const useUser=()=>{

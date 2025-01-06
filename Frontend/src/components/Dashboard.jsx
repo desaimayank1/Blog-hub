@@ -1,15 +1,14 @@
 import React from 'react';
 import { useUser } from '../context';
 import { useState, useEffect } from 'react';
-import { data } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
-
+import Loading from './Loading';
 const Dashboard = () => {
     // Data for the cards
-    const {user,post,setPost}=useUser();
+    const {user}=useUser();
     const [loading, setLoading] = useState(true); 
     const [cardsData, setCardsData] = useState([]);
-
+   
     const getPost=async ()=>{
 
         try {
@@ -87,9 +86,8 @@ const Dashboard = () => {
                     </div>
 
                     {loading ? (
-                        <div className="text-center mt-12">
-                            <p>Loading blogs...</p>
-                        </div>
+                       <Loading/>
+                        
                     ) : (
                          <div className="mx-auto mt-12 grid max-w-lg gap-10 lg:max-w-none lg:grid-cols-3 bg-white">
                          {cardsData.map((card, index) => (

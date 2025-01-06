@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import DOMPurify from 'dompurify';
 import { useUser } from '../context';
 import Comment from './Comment';
-
+import Loading from './Loading';
 const Post = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const Id = urlParams.get('f');
@@ -109,15 +109,13 @@ const Post = () => {
       console.log("something went wrong while deleting post", error);
     }
   }
-
   return (
     <>
       {
         loading ? (
-          <div className="text-center mt-12">
-            <p>Loading blogs...</p>
-          </div>
+          <Loading/>
         ) : (
+          
           <div className="w-full h-full bg-white">
             {/* Adding top padding to ensure space for floating navbar */}
             <div className="w-full mx-auto py-10 bg-white pt-20 lg:pt-28 md:pt-24 xs:pt-20">
@@ -126,8 +124,8 @@ const Post = () => {
                 {/* Edit button */}
                 {user._id == postData.userId && <button
                   onClick={handleEdit}
-                  className="bg-blue-500 text-white hover:bg-blue-700 px-4 py-2 rounded-md font-sans text-lg font-medium transition duration-300">
-                  Edit
+                  className="bg-blue-500 text-white hover:bg-blue-700 px-4 py-2 rounded-lg font-sans text-lg font-medium transition duration-300">
+                 <svg class="h-8 w-8 text-white"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />  <line x1="16" y1="5" x2="19" y2="8" /></svg> 
                 </button>}
 
                 {/* Title */}
@@ -139,7 +137,7 @@ const Post = () => {
                 {user._id == postData.userId && <button
                   onClick={handleDelete}
                   className="bg-red-500 text-white hover:bg-red-700 px-4 py-2 rounded-md font-sans text-lg font-medium transition duration-300">
-                  Delete
+                 <svg class="text-white w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/> </svg>
                 </button>}
               </div>
 
