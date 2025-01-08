@@ -51,7 +51,7 @@ function App() {
         credentials: 'include',
       })
       const data = await response.json();
-
+      
       setUser(data);
       // console.log(data);
       setLoading(false);
@@ -66,7 +66,10 @@ function App() {
   }
 
   useEffect(()=>{
-    getUser()
+    const fetchData =async()=>{
+      await getUser();
+  };
+   fetchData();
   },[])
 
   return (

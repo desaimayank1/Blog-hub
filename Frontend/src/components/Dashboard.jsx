@@ -19,9 +19,10 @@ const Dashboard = () => {
          });
      
          const data=await response.json();
+
         //  console.log(data.posts);
          setCardsData(data.posts);
-         setLoading(false); // Set loading to false
+         setLoading(false);
          
         } catch (error) {
           console.log("error getting Post data", error)
@@ -37,7 +38,7 @@ const Dashboard = () => {
      fetchData();
    },[])     
 
-//    console.log(user);
+//    console.log(cardsData);
 
     return (
         <>
@@ -118,7 +119,7 @@ const Dashboard = () => {
                                          <div className="flex-shrink-0">
                                              <a href={`/post?f=${card._id}`}>
                                                  <span className="sr-only">{card.author}</span>
-                                                 <img className="h-10 w-10 rounded-full" src={card.authorImage} alt="" />
+                                                 <img className="h-10 w-10 rounded-full" src={card.authorImage} alt={card.author} />
                                              </a>
                                          </div>
                                          <div className="ml-3">
@@ -136,8 +137,8 @@ const Dashboard = () => {
                              </div>
                          ))}
                      </div>
-                    )
-                    }
+                     )
+                    } 
                     
                 </div>
             </div>

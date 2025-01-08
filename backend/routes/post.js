@@ -94,7 +94,7 @@ router.get("/view/:postId", async (req, res) => {
     res.status(200).json(postInfo);
   } catch (error) {
     console.log(error);
-    res.redirect("/internal-server-error");
+    res.redirect(`${baseUrl}/error500`);
   }
 });
 
@@ -112,7 +112,7 @@ router.delete("/delete",async (req,res)=>{
 
   } catch (error) {
     console.log(error);
-    res.redirect("/internal-server-error");
+    res.redirect(`${baseUrl}/error500`);
   }
 });
 

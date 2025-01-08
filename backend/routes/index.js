@@ -37,7 +37,7 @@ router.get("/getuser", ensureAuth, ensureSignUp, async (req, res) => {
     res.status(200).send(req.user);
   } catch (error) {
     console.log(error);
-    res.redirect("/internal-server-error");
+    res.redirect(`${baseUrl}/error500`);
   }
 });
 
