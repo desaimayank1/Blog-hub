@@ -54,10 +54,11 @@ function App() {
       
       setUser(data);
       // console.log(data);
-      setLoading(false);
+      
       if (data != false) {
         setLoggedIn(true)
       }
+      setLoading(false);
     } catch (error) {
       console.log("error getting user data", error)
       setLoading(false);
