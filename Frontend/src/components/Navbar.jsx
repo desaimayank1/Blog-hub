@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useUser } from "../context";
+import { useUser } from "../context/UserContext";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);

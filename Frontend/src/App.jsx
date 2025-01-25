@@ -12,14 +12,14 @@ import Error500 from "./components/partials/Error500";
 import Format from "./Format";
 import Editpost from "./components/Editpost";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import { useUser } from "./context";
 import { useEffect, useState } from "react";
-import { UserProvider } from "./context";
 import Protectedroute from "./components/middlewares/Protectedroute";
 import Loginroute from "./components/middlewares/Loginroute";
 import Signuproute from "./components/middlewares/Signuproute";
 import Createroute from "./components/middlewares/Createroute";
 import Loading from "./components/Loading";
+import { useUser } from "./context/UserContext";
+// console.log("rendering app")
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -39,9 +39,7 @@ const router = createBrowserRouter(
 )
 function App() {
   
-  const [user, setUser] = useState({});
-  const [post, setPost] = useState({});
-  const [loggedin, setLoggedIn] = useState(false);
+  const {setUser,setLoggedIn} =useUser();
   const [loading, setLoading] = useState(true);
   const getUser = async () => {
     try {
@@ -53,7 +51,7 @@ function App() {
       const data = await response.json();
       
       setUser(data);
-      console.log(data);
+      // console.log(data);
       
       if (data != false) {
         setLoggedIn(true)
@@ -78,9 +76,7 @@ function App() {
       {loading ? (
         <Loading/>
       ) : (
-        <UserProvider value={{ user, setUser, post, setPost, loggedin, setLoggedIn }} >
           <RouterProvider router={router} />
-        </UserProvider>
       )}
     </>
   )

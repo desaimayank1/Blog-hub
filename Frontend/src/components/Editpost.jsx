@@ -4,7 +4,7 @@ import { useRef } from "react";
 import SuccessModal from "./partials/Successmodal";
 import Loadingmodal from "./partials/Loadingmodal";
 import Errormodal from "./partials/Errormodal";
-import { useUser } from "../context";
+import { useUser } from "../context/UserContext";
 
 const Editpost = () => {
     const urlParams = new URLSearchParams(window.location.search);

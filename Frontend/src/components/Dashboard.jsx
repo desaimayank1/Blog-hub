@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from '../context';
+import { useUser } from '../context/UserContext';
 import { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import Loading from './Loading';

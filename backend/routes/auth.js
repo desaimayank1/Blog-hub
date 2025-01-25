@@ -17,7 +17,7 @@ router.get(
   }),
   (req, res) => {
     const user = req.user;
-    console.log(user, user.role);
+    // console.log(user, user.role);
 
     if (!(user.role === 0 || user.role === 1)) {
       return res.redirect(`${baseUrl}/signup`);

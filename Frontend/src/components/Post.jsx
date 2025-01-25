@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import parse from 'html-react-parser';
 import DOMPurify from 'dompurify';
-import { useUser } from '../context';
+import { useUser } from '../context/UserContext';
 import Comment from './Comment';
 import Loading from './Loading';
 const Post = () => {

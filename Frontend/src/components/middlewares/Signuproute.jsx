@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useUser } from "../../context";
+import { useUser } from "../../context/UserContext";
 const Signuproute = ({ children }) => {
    const { user} = useUser();
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {useUser} from "../context"
+import { useUser } from "../context/UserContext";
 
 const Profile = () => {
   const {user} =useUser();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../context";
+import { useUser } from "../context/UserContext";
 const Signup = () => {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
