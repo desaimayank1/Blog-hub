@@ -112,7 +112,7 @@ const CreatePost = () => {
             }
 
             if (thumbnailUploadResponse.ok) {
-                newPost.thumbnail = `https://d376csz4lg8iex.cloudfront.net/${thumbnailKeyName}`;
+                newPost.thumbnail = `https://dji7xd8nqrmrk.cloudfront.net/${thumbnailKeyName}`;
             }
             
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/post/create`, {

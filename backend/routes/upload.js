@@ -22,7 +22,7 @@ const getPresignedUrl = async (fileName, fileType) => {
   console.log(uniqueFileName);
 
   const command = new PutObjectCommand({
-    Bucket: "learnflow-blogsite-app",
+    Bucket: "learnflow-blogsite",
     Key: uniqueFileName,
     ContentType: fileType,
   });
@@ -36,7 +36,7 @@ const getPresignedUrl = async (fileName, fileType) => {
 
 const deleteObjectFromS3 = async (fileName) => {
   const command = new DeleteObjectCommand({
-    Bucket: "learnflow-blogsite-app",
+    Bucket: "learnflow-blogsite",
     Key: fileName,
   });
 

@@ -116,7 +116,7 @@ const Editpost = () => {
                 thumbnailUploadResponse = uploadResponse;
                 const thumbnailKeyName = fileName;
                 if (thumbnailUploadResponse.ok) {
-                    newPost.thumbnail = `https://d376csz4lg8iex.cloudfront.net/${thumbnailKeyName}`;
+                    newPost.thumbnail = `https://dji7xd8nqrmrk.cloudfront.net/${thumbnailKeyName}`;
                 }
 
                 //deleting image from s3 bucket
