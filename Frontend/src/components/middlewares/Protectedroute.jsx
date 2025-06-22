@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 const Protectedroute = ({ children }) => {
     const { loggedin,user} = useUser();
-    // console.log(user);
+    console.log(user);
   if (!loggedin) {
     return <Navigate to="/login" replace />;
   }
